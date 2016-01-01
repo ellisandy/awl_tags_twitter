@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'commander/import'
+require 'scraper'
+
+program :version, '0.0.1'
+program :description, 'Grab tags from posts and tweet them out'
+
+command :post do |c|
+  c.syntax = 'AWSTags post [options]'
+  c.summary = ''
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '--some-switch', 'Some switch that does something'
+  c.action do |args, options|
+    scrapper = Scraper.new
+    scrapper.some = "hello"
+    
+    scrapper.why
+  end
+end
+
+command :list do |c|
+  c.syntax = 'AWSTags list [options]'
+  c.summary = ''
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '--some-switch', 'Some switch that does something'
+  c.action do |args, options|
+    # Do something or c.when_called Awstags::Commands::List
+  end
+end
+
+command :'cache-all' do |c|
+  c.syntax = 'AWSTags cache-all [options]'
+  c.summary = ''
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '--some-switch', 'Some switch that does something'
+  c.action do |args, options|
+    # Do something or c.when_called Awstags::Commands::Cache-all
+  end
+end
