@@ -17,7 +17,7 @@ command :post do |c|
     scrapper = Scraper.new
     scrapper.some = "hello"
     
-    scrapper.why
+    puts scrapper.what
   end
 end
 
