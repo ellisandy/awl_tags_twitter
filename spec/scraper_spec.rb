@@ -1,9 +1,8 @@
 require 'scraper'
 
 RSpec.describe Scraper do
-  context '#Version' do
-    it 'has a version' do
-      expect(Scraper::VERSION).to be_kind_of(String)
-    end
+  context '#get_posts' do
+    it { should respond_to(:get_posts) }
+    it { should respond_to(:posts) }
   end
 end

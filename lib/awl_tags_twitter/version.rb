@@ -1,3 +1,5 @@
+# Global Version for AwlTagsTwitter
 module AwlTagsTwitter
-  VERSION = "0.0.1"
+  # Global Version for AwlTagsTwitter
+  VERSION = '0.0.1'
 end

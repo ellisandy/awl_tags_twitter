@@ -1,7 +1,9 @@
+# Class for handling RSS feed to grab posts
 class Scraper
-  attr_accessor :some
-  
-  def what
-    @some
+  # Array of Hashes
+  attr_reader :posts
+
+  def Scraper.get_posts
+    
   end
 end

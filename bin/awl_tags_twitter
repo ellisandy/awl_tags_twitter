@@ -2,38 +2,47 @@
 
 require 'rubygems'
 require 'commander/import'
-require 'scraper'
+require 'awl_tags_twitter'
 
-program :version, '0.0.1'
+program :version, AwlTagsTwitter::VERSION
 program :description, 'Grab tags from posts and tweet them out'
 
 command :post do |c|
-  c.syntax = 'AWSTags post [options]'
+  c.syntax = 'awl_tags_twitter post [options]'
   c.summary = ''
   c.description = ''
   c.example 'description', 'command example'
   c.option '--some-switch', 'Some switch that does something'
-  c.action do |args, options|
+  c.action do # |args, options|
     scrapper = Scraper.new
-    scrapper.some = "hello"
-    
+    scrapper.some = 'hello'
+
     puts scrapper.what
   end
 end
 
 command :list do |c|
-  c.syntax = 'AWSTags list [options]'
-  c.summary = ''
-  c.description = ''
-  c.example 'description', 'command example'
-  c.option '--some-switch', 'Some switch that does something'
+  c.syntax = 'awl_tags_twitter list'
+  c.summary = 'List current posts and their tags'
+  c.description = 'List current posts and their tags. Display them in an ASCII table split as they would be tweeted'
+  c.example 'basic', 'awl_tags_twitter list --basic'
+  c.example 'complex', 'awl_tags_twitter list --complex'
+  c.option '--basic', 'Display posts with tags'
+  c.option '--complex', 'Display posts with tags split between posts'
   c.action do |args, options|
     # Do something or c.when_called Awstags::Commands::List
+    if options.basic
+      AwlTagsTwitter.list
+    elsif options.complex
+      puts 'IN PROGRESS'
+    else
+      fail 'provide --basic or --complex'
+    end
   end
 end
 
 command :'cache-all' do |c|
-  c.syntax = 'AWSTags cache-all [options]'
+  c.syntax = 'awl_tags_twitter cache-all [options]'
   c.summary = ''
   c.description = ''
   c.example 'description', 'command example'
