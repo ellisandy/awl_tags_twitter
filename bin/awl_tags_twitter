@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'commander/import'
 require 'awl_tags_twitter'
+require 'terminal-table'
 
 program :version, AwlTagsTwitter::VERSION
 program :description, 'Grab tags from posts and tweet them out'
@@ -24,15 +25,18 @@ end
 command :list do |c|
   c.syntax = 'awl_tags_twitter list'
   c.summary = 'List current posts and their tags'
-  c.description = 'List current posts and their tags. Display them in an ASCII table split as they would be tweeted'
+  c.description = 'List current posts and their tags. Display them'\
+                  ' in an ASCII table split as they would be tweeted'
   c.example 'basic', 'awl_tags_twitter list --basic'
   c.example 'complex', 'awl_tags_twitter list --complex'
   c.option '--basic', 'Display posts with tags'
   c.option '--complex', 'Display posts with tags split between posts'
-  c.action do |args, options|
+  c.action do |_args, options|
     # Do something or c.when_called Awstags::Commands::List
     if options.basic
-      AwlTagsTwitter.list
+      rows = AwlTagsTwitter.list.map { |a| [a.link, a.tags] }
+      table = Terminal::Table.new rows: rows
+      puts table
     elsif options.complex
       puts 'IN PROGRESS'
     else
