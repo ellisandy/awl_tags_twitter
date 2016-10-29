@@ -1,7 +1,7 @@
 require 'article'
 
 RSpec.describe Article do
-  link = 'http://www.theawl.com/?p=222231'
+  link = 'https://medium.com/p/1fe66319e7e0'
   context '#initialize' do
     it 'should raise ArgumentError' do
       expect { Article.new }.to raise_error(ArgumentError)
@@ -50,10 +50,6 @@ RSpec.describe Article do
       doc = article.request_url
       expect(article.filter_tags(doc)).to be_kind_of(Array)
     end
-    #it 'returns array of upcase strings', :vcr do
-      #doc = article.request_url
-      #expect(article.filter_tags(doc).first).to be_kind_of(String)
-    #end
   end
 
   context 'request_url' do

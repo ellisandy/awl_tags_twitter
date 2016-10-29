@@ -34,3 +34,12 @@ $ awl_tags_twitter --config /path/to/config/file help
 3. Builder
   * accepts a url
   * returns an array of tags
+
+## Algorythm
+  * []
+  * Tweet.new(link)
+  * Tweet.add tag
+    * Tweet.add will check if the tweet will be too long with the new tag included
+  * next
+  * tweet add or Tweet.new again
+

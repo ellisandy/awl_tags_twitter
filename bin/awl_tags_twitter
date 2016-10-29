@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'commander/import'
-require 'awl_tags_twitter'
+require 'scraper'
 require 'terminal-table'
 
 program :version, AwlTagsTwitter::VERSION
@@ -34,8 +34,9 @@ command :list do |c|
   c.action do |_args, options|
     # Do something or c.when_called Awstags::Commands::List
     if options.basic
-      awl_tags_twitter = AwlTagsTwitter.new
-      rows = awl_tags_twitter.list.map { |a| [a.link, a.tags] }
+      scraper = Scraper.new
+      scraper.retrieve_posts
+      rows = scraper.articles.map { |a| [a.link, a.tags] }
       table = Terminal::Table.new rows: rows
       puts table
     elsif options.complex

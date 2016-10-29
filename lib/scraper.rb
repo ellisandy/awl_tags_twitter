@@ -10,23 +10,26 @@ class Scraper
   # Array of Hashes
   attr_reader :articles
 
+  # URL to pull the initial feed
+  AWL_RSS_URL = 'http://feeds2.feedburner.com/TheAwl'
+  # Shortcut for contracts
   C = Contracts
 
-  # Retrieve a list of posts and return array of short links
   Contract C::None => C::ArrayOf[Article]
+  # Retrieve a list of posts and return array of short links
   def retrieve_posts
     # Get posts
-    rss = RSS::Parser.parse(AwlTagsTwitter::AWL_RSS_URL)
+    rss = RSS::Parser.parse(AWL_RSS_URL)
 
     # Grab shortened URLs
     links = rss.items.map(&:guid).map(&:content)
 
-    @articles = create_articles(links)
-  end
+    @articles = []
 
-  # creates a new Article object. DOES NOT PULL TAGS
-  Contract C::ArrayOf[String] => C::ArrayOf[Article]
-  def create_articles(links)
-    links.map { |link| Article.new(link) }
+    links.each do |link|
+      @articles << Article.new(link)
+    end
+
+    @articles.map(&:retrieve_tags)
   end
 end
