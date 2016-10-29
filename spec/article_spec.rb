@@ -50,10 +50,10 @@ RSpec.describe Article do
       doc = article.request_url
       expect(article.filter_tags(doc)).to be_kind_of(Array)
     end
-    it 'returns array of upcase strings', :vcr do
-      doc = article.request_url
-      expect(article.filter_tags(doc).first).to be_kind_of(String)
-    end
+    #it 'returns array of upcase strings', :vcr do
+      #doc = article.request_url
+      #expect(article.filter_tags(doc).first).to be_kind_of(String)
+    #end
   end
 
   context 'request_url' do

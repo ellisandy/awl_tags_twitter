@@ -1,11 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
-require 'builder'
 
 # The Article class contains the links and tags for consumption by twitter
 class Article
-  include Builder
-
   attr_accessor :tweets
   attr_reader :link, :tags
 
@@ -26,7 +23,7 @@ class Article
   # the resulting string uppercase.
   def filter_tags(doc)
     # Filter down and get the tags.
-    @tags = doc.css('.g-tag-box ul li a').map(&:content).map(&:upcase)
+    @tags = doc.css('.tags a').map(&:children).map(&:text)
   end
 
   # Opens @link, then parses using Nokogiri
