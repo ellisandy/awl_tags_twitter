@@ -40,7 +40,11 @@ command :list do |c|
       table = Terminal::Table.new rows: rows
       puts table
     elsif options.complex
-      puts 'IN PROGRESS'
+      scraper = Scraper.new
+      scraper.retrieve_posts.map(&:build_tweets)
+      rows = scraper.articles.map { |a| [a.link, a.tags, a.get_tweets] }
+      table = Terminal::Table.new rows: rows
+      puts table
     else
       fail 'provide --basic or --complex'
     end
