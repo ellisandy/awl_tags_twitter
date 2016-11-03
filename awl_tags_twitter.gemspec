@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jack Ellis']
   spec.email         = ['jack@mnmlst.cc']
   spec.summary       = 'Grab tags from The Awl posts and tweet them out'
-  spec.description   = 'Grab tags from The Awl posts and tweet them out'
-  spec.homepage      = ''
+  spec.description   = 'Grab tags from The Awl posts and tweet them out. This isn\'t anything crazy'
+  spec.homepage      = 'https://github.com/ellisandy'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,10 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_runtime_dependency 'nokogiri', '~> 1.6.6'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.6'
   spec.add_runtime_dependency 'commander', '~> 4.3'
   spec.add_runtime_dependency 'contracts', '~> 0.12'
   spec.add_runtime_dependency 'terminal-table', '~> 1.5'
+  spec.add_runtime_dependency 'twitter', '~> 5.16'
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rspec', '~> 3.2'
@@ -34,5 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec', '~> 4.5'
   spec.add_development_dependency 'terminal-notifier-guard', '~> 1.6'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry', '~> 0.10'
 end

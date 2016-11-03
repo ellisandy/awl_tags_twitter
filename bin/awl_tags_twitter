@@ -4,6 +4,7 @@ require 'rubygems'
 require 'commander/import'
 require 'scraper'
 require 'terminal-table'
+require 'awl_tags_twitter/version'
 
 program :version, AwlTagsTwitter::VERSION
 program :description, 'Grab tags from posts and tweet them out'
@@ -42,7 +43,7 @@ command :list do |c|
     elsif options.complex
       scraper = Scraper.new
       scraper.retrieve_posts.map(&:build_tweets)
-      rows = scraper.articles.map { |a| [a.link, a.tags, a.get_tweets] }
+      rows = scraper.articles.map { |a| [a.link, a.tags, a.tweets] }
       table = Terminal::Table.new rows: rows
       puts table
     else
