@@ -93,7 +93,7 @@ command :tweet do |c|
     rows = scraper.articles.map { |a| [a.tweets] }
 
     unless options.dry
-      scraper.articles.each do |a|
+      scraper.articles.map do |a|
         a.tweets.each do |t|
           twitter_client.update(t)
         end
