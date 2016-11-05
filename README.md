@@ -9,10 +9,16 @@ Grab tags from The Awl posts and tweet them out
 ## Usage
 
 ```
-$ awl_tags_twitter --config /path/to/config/file post
-$ awl_tags_twitter --config /path/to/config/file list
-$ awl_tags_twitter --config /path/to/config/file help
+$ awl_tags_twitter list [--basic | --complex]
+$ awl_tags_twitter cache-all [--dry]
+$ awl_tags_twitter tweet --config /path/to/config/file [--dry]
 ```
+
+### How to retweet a previous Article
+
+1. You should locate the gem installation location
+2. Navigate to the tmp directory, and open articles.json
+3. Remove the article link which you would like to retweet
 
 ## Contributing
 
@@ -21,25 +27,4 @@ $ awl_tags_twitter --config /path/to/config/file help
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-## Archecture
-1. Scraper returns a list of URLs
-  * These URLs tie to a specific Article
-  * When the article is initialized it should only have the URL
-  * You can then call Builder which will poll the webservice and grab all the tags
-2. Article
-  * has a URL
-  * has a list of tags
-  * utilizes builder to actually poll teh article and return the tags
-3. Builder
-  * accepts a url
-  * returns an array of tags
-
-## Algorythm
-  * []
-  * Tweet.new(link)
-  * Tweet.add tag
-    * Tweet.add will check if the tweet will be too long with the new tag included
-  * next
-  * tweet add or Tweet.new again
 

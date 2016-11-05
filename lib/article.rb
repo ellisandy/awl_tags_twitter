@@ -46,9 +46,9 @@ class Article
 
   # Filters finds the link inside the .g-tag-box div, pulls the name, then makes
   # the resulting string uppercase.
-  def filter_tags(doc)
+  def filter_tags(document)
     # Filter down and get the tags.
-    @tags = doc.css(TAG_CSS).map(&:children).map(&:text)
+    @tags = document.css(TAG_CSS).map(&:children).map(&:text)
   end
 
   # Opens @link, then parses using Nokogiri

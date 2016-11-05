@@ -99,7 +99,7 @@ command :tweet do |c|
       end
 
       # push out them tweets
-      # tracker.write_articles
+      tracker.write_articles
     end
 
     table = Terminal::Table.new rows: rows

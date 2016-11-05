@@ -31,6 +31,7 @@ class Scraper
       @articles << Article.new(link)
     end
 
+    # TODO: Only grab the tags for articles that haven't already be tweeted
     @articles.map(&:retrieve_tags)
   end
 
