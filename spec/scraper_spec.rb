@@ -7,7 +7,6 @@ RSpec.describe Scraper do
     it 'responsed', :vcr do
       expect(scraper).to respond_to(:retrieve_posts)
     end
-
     it 'returns an arrays', :vcr do
       expect(scraper.retrieve_posts).to be_kind_of(Array)
     end
@@ -33,6 +32,7 @@ RSpec.describe Scraper do
     context 'when there are previous articles' do
       before do
         allow_any_instance_of(Tracker).to receive(:articles).and_return(['http://domain.com/1'])
+        allow_any_instance_of(Tracker).to receive(:read_articles).and_return(['http://domain.com/1'])
       end
 
       it 'does not return the previous articles', :vcr do
@@ -45,6 +45,7 @@ RSpec.describe Scraper do
     context 'when there are no previous posts' do
       before do
         allow_any_instance_of(Tracker).to receive(:articles).and_return([])
+        allow_any_instance_of(Tracker).to receive(:read_articles).and_return([])
       end
 
       it 'returns all posts' do
