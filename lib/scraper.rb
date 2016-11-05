@@ -1,7 +1,8 @@
-require 'nokogiri'
-require 'rss'
 require 'article'
 require 'contracts'
+require 'nokogiri'
+require 'rss'
+require 'tracker'
 
 # Class for handling RSS feed to grab posts
 class Scraper
@@ -31,5 +32,13 @@ class Scraper
     end
 
     @articles.map(&:retrieve_tags)
+  end
+
+  Contract C::None => C::ArrayOf[Article]
+  # Subtrack saved artciles from the list of articles
+  def subtract_cache
+    tracker = Tracker.new
+    tracker.read_articles
+    @articles.delete_if { |x| tracker.articles.include?(x.link) }
   end
 end

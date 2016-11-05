@@ -65,10 +65,10 @@ RSpec.describe Article do
     end
 
     context 'when there is only a few tags' do
-      let(:tags) { ['foo'] }
+      let(:tags) { %w(foo bar) }
 
       it 'returns an array of tweets' do
-        expect(article.build_tweets.first.post).to eq("#{tags.first} | #{link}")
+        expect(article.build_tweets.first.post).to eq("| #{tags.last} | #{tags.first} | #{link}")
       end
       it 'returns only one tweet' do
         expect(article.build_tweets.count).to eq(1)
@@ -98,7 +98,7 @@ RSpec.describe Article do
       it 'returns the array of tweets' do
         article.build_tweets
 
-        expect(article.tweets).to eq(["#{tags.first} | #{link}"])
+        expect(article.tweets).to eq(["| #{tags.first} | #{link}"])
       end
     end
   end

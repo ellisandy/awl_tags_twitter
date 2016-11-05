@@ -14,7 +14,7 @@ RSpec.describe Tweet do
     context 'when the tag + @post is < 140' do
       let(:tag) { 'foo' }
       it 'is added' do
-        expect(tweet.add(tag)).to eq("#{tag} | #{link}")
+        expect(tweet.add(tag)).to eq("| #{tag} | #{link}")
       end
     end
     context 'when the tag + @post is > 140' do

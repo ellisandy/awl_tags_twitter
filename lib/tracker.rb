@@ -11,11 +11,6 @@ class Tracker
   C = Contracts
 
   Contract C::None => C::ArrayOf[String]
-  def initialize
-    @articles = read_articles
-  end
-
-  Contract C::None => C::ArrayOf[String]
   # reads articles from the ./tmp/articles.json file
   def read_articles
     file = JSON.load(File.read('./tmp/articles.json'))

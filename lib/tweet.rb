@@ -14,15 +14,15 @@ class Tweet
   Contract String => String
   def initialize(link)
     @link = link
-    @post = @link
+    @post = "| #{@link}"
   end
 
   Contract String => String
   # Add tag to @post
   def add(tag)
-    temp_post = "#{tag} | #{@post}"
+    temp_post = "| #{tag} #{@post}"
     if temp_post.length <= 140
-      @post = tag + ' | ' + @post
+      @post = "| #{tag} #{@post}"
     else
       fail Tweet::TagTooLong
     end

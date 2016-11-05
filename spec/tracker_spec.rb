@@ -11,19 +11,15 @@ RSpec.describe Tracker do
   context '#articles' do
     context 'when the file is populated' do
       it 'returns an array with urls' do
-        expect(tracker.articles).to eq(['https://domain.com/123456'])
+        expect(tracker.read_articles).to eq(['https://domain.com/123456'])
       end
     end
 
     context 'when the file does not contain JSON' do
       let(:data) { ' { "articles": "blah" : "foo" } ' }
 
-      before do
-        expect(File).to receive(:read).and_return(data)
-      end
-
       it 'returns an empty array' do
-        expect(tracker.articles).to eq([])
+        expect(tracker.read_articles).to eq([])
       end
     end
 
@@ -35,7 +31,7 @@ RSpec.describe Tracker do
       end
 
       it 'returns an empty array' do
-        expect(tracker.articles).to eq([])
+        expect(tracker.read_articles).to eq([])
       end
     end
   end
@@ -50,12 +46,12 @@ RSpec.describe Tracker do
     it { is_expected.to respond_to(:write_articles) }
 
     context 'when the JSON is valid' do
-      let(:article) { 'https://domain.com/123456' }
+      let(:articles) { ['https://domain.com/123456'] }
 
       it 'it writes the JSON to file' do
-        tracker.articles << article
+        tracker.instance_variable_set(:@articles, articles)
         tracker.write_articles
-        expect(tracker.read_articles).to eq([article])
+        expect(tracker.read_articles).to eq(articles)
       end
     end
   end
