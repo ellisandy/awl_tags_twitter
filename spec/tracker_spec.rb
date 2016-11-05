@@ -48,6 +48,10 @@ RSpec.describe Tracker do
     context 'when the JSON is valid' do
       let(:articles) { ['https://domain.com/123456'] }
 
+      before do
+        expect_any_instance_of(File).to receive(:write).and_return(47)
+      end
+
       it 'it writes the JSON to file' do
         tracker.instance_variable_set(:@articles, articles)
         tracker.write_articles
