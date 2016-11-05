@@ -20,7 +20,7 @@ class TwitterClient
     fail 'Unable to load your credentials' unless @client.credentials?
   end
 
-  Contract String => nil
+  Contract String => Twitter::Tweet
   # Wrapper for Twitter::Rest::Client.update with retries if too many requests
   def update(post)
     @client.update(post)
