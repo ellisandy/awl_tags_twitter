@@ -13,7 +13,7 @@ class Tracker
   Contract C::None => C::ArrayOf[String]
   # reads articles from the ./tmp/articles.json file
   def read_articles
-    file = JSON.load(File.read("#{Dir.home}/awl_articles.json"))
+    file = JSON.load(File.read("#{Dir.home}/.awl_articles.json"))
     @articles = file['articles']
 
   rescue JSON::ParserError

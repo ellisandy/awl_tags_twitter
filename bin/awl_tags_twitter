@@ -20,6 +20,7 @@ command :list do |c|
   c.option '--basic', 'Display posts with tags'
   c.option '--complex', 'Display posts with tags split between posts'
   c.action do |_args, options|
+    fail 'provide --basic or --complex' unless options.basic || options.complex
     scraper = Scraper.new
     scraper.retrieve_posts
     if options.basic
