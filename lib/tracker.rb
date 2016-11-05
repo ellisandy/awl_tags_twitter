@@ -13,7 +13,7 @@ class Tracker
   Contract C::None => C::ArrayOf[String]
   # reads articles from the ./tmp/articles.json file
   def read_articles
-    file = JSON.load(File.read('./tmp/articles.json'))
+    file = JSON.load(File.read("#{Dir.home}/awl_articles.json"))
     @articles = file['articles']
 
   rescue JSON::ParserError
@@ -25,7 +25,7 @@ class Tracker
   Contract C::None => C::Num
   # writes articles from the ./tmp/articles.json file
   def write_articles
-    f = File.new('./tmp/articles.json', 'w')
+    f = File.new("#{Dir.home}/.awl_articles.json", 'w')
     f.write "{ \"articles\": #{@articles} }"
   end
 end

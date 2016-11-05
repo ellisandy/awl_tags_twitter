@@ -14,6 +14,19 @@ $ awl_tags_twitter cache-all [--dry]
 $ awl_tags_twitter tweet --config /path/to/config/file [--dry]
 ```
 
+### Twitter credentials
+1. Create a file to hold your credentials
+2. Paste in the following (including your actual credentials
+
+```
+{
+  "consumer_key":"<CONSUMER KEY>",
+  "consumer_secret":"<CONSUMER_SECRET>",
+  "access_token":"<ACCESS_TOKEN>",
+  "access_token_secret":"<ACCESS_TOKEN_SECRET>"
+}
+```
+
 ### How to retweet a previous Article
 
 1. You should locate the gem installation location
